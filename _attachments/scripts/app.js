@@ -7,6 +7,11 @@ var triplogApp = angular.module('triplogApp', [
 ]);
 
 triplogApp.config(['$routeProvider', function ($routeProvider) {
+	/* home route */
+	$routeProvider.when('/home', {
+		'templateUrl': 'partials/home.html',
+		'controller': 'MainController'
+	});
 	/* posts routes */
 	$routeProvider.when('/posts', { 
 		'templateUrl': 'partials/post-list.html', 
@@ -34,4 +39,7 @@ triplogApp.config(['$routeProvider', function ($routeProvider) {
 		'templateUrl': 'partials/photo-detail.html', 
 		'controller': 'PhotoDetailController' 
 	});
+
+	/* unknown page */
+	$routeProvider.otherwise({ 'redirectTo': '/home' });
 }]);
