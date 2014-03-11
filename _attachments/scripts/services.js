@@ -5,7 +5,7 @@
 angular.module('triplogApp.services', ['ngResource'])
 	
 	.factory('Posts', ['$resource', function ($resource) {
-		return $resource('/triplog/_design/triplog-frontend/_view/posts', {}, {
+		return $resource('/posts', {}, {
 			'query2': { 'method': 'GET', 'params': { 'limit': 2, 'descending': true } },
 			'query': { 'method': 'GET' }
 		});
