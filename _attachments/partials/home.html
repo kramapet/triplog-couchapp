@@ -7,7 +7,7 @@
 		<header>
 			<h2>{{ post.value.title }}</h2>
 		</header>
-		<p>{{ post.value.body }}</p>
+		<p>{{ post.value.body | showdown }}</p>
 		<footer>
 			<p class="small text-right"><i>Published at: <time pubdate="pubdate">{{ post.value.published_at | arrdate2epochtime | date:"yyyy/MM/dd HH:mm" }}</time></i></p>
 		</footer>
