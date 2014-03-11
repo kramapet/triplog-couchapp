@@ -3,11 +3,6 @@
 /* filters */
 
 angular.module('triplogApp.filters', [])
-	.filter('showdown', ['ShowdownConverter', function (ShowdownConverter) {
-		return function (text) {
-			return ShowdownConverter.makeHtml(text);
-		}
-	}])
 
 	.filter('arrdate2epochtime', [function () {
 		return function (arr) {
