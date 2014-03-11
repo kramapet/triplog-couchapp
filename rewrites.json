@@ -1,0 +1,22 @@
+[
+	{
+		"from": "/",
+		"to": "index.html"
+	},
+	{
+		"from": "/posts",
+		"to": "_view/posts"
+	},
+	{
+		"from": "/object/:itemId",
+		"to": "../../:itemId"
+	},
+	{
+		"from": "/object/:itemId/:attachment",
+		"to": "../../:itemId/:attachment"
+	},
+	{
+		"from": "/*",
+		"to": "*"
+	}
+]
