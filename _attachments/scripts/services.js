@@ -3,6 +3,10 @@
 /* services */
 
 angular.module('triplogApp.services', ['ngResource'])
+
+	.factory('Showdown', ['$window', function ($window) {
+		return $window.Showdown.converter();
+	}])
 	
 	.factory('Posts', ['$resource', function ($resource) {
 		return $resource('/posts', {}, {
@@ -10,5 +14,6 @@ angular.module('triplogApp.services', ['ngResource'])
 			'query': { 'method': 'GET' }
 		});
 	}])
+
 
 	.value('version', 0.1);
