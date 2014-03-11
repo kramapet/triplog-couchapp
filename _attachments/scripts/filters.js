@@ -2,7 +2,18 @@
 
 /* filters */
 
-angular.module('triplogApp.filters', [])
+angular.module('triplogApp.filters', ['ngSanitize'])
+	
+	.filter('showdown', ['$sanitize', function ($sanitize) {
+		return function (obj) {
+			var converter = new Showdown.converter({
+				'extensions': ['table', 'img'],
+			});
+			converter.ctxId = obj.id;
+
+			return $sanitize(converter.makeHtml(obj.body));
+		};
+	}])
 
 	.filter('arrdate2epochtime', [function () {
 		return function (arr) {
