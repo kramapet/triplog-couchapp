@@ -11,7 +11,7 @@ angular.module('triplogApp.directives', ['ngSanitize'])
 	 * https://github.com/btford/angular-markdown-directive
 	 */
 	.directive('btf-markdown', ['$sanitize', function ($sanitize) {
-		var converter = Showdown.converter();
+		var converter = new Showdown.converter();
 		var html = "";
 		return {
 			'restrict': 'AE',
