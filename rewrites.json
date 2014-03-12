@@ -4,8 +4,8 @@
 		"to": "index.html"
 	},
 	{
-		"from": "/posts",
-		"to": "_view/posts"
+		"from": "/objects",
+		"to": "_view/objects"
 	},
 	{
 		"from": "/object/:itemId",
