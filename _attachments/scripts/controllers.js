@@ -2,9 +2,9 @@
 
 /* controllers */
 angular.module('triplogApp.controllers', [])
-	.controller('MainController', ['$scope', 'Posts', function ($scope, Posts) {
+	.controller('MainController', ['$scope', 'Objects', function ($scope, Posts) {
 
-		$scope.posts = Posts.query2();
+		$scope.objects = Objects.query5();
 
 	}])
 
