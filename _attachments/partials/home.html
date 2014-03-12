@@ -1,18 +1,11 @@
-<section>
+<article ng-repeat="obj in objects.rows">
 	<header>
-		<h1>Posts</h1>
+		<h1>{{ obj.value.title }}</h1>
 	</header>
 
-	<article ng-repeat="post in posts.rows">
-		<header>
-			<h2>{{ post.value.title }}</h2>
-		</header>
-	
-		<div ng-bind-html="{'body': post.value.body, 'id': post.id} | showdown"></div>
+	<div ng-bind-html="{'body': obj.value.body, 'id': obj.id} | showdown"></div>
 
-		<footer>
-			<p class="small text-right"><i>Published at: <time pubdate="pubdate">{{ post.value.published_at | arrdate2epochtime | date:"yyyy/MM/dd HH:mm" }}</time></i></p>
-		</footer>
-	</article>
-		
-</section>
+	<footer>
+		<p class="small text-right"><i>Published at: <time pubdate="pubdate">{{ obj.value.published_at | arrdate2epochtime | date:"yyyy/MM/dd HH:mm" }}</time></i></p>
+	</footer>
+</article>
