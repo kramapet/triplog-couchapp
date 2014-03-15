@@ -38,7 +38,7 @@ angular.module('triplogApp.services', ['ngResource'])
 				[ rect.maxLat, rect.maxLon ]
 			];
 		};
-	}]);
+	}])
 
 
 	.value('version', 0.1);
