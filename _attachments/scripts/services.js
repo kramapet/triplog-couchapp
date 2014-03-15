@@ -15,5 +15,30 @@ angular.module('triplogApp.services', ['ngResource'])
 		return $window.L;
 	}])
 
+	.factory('CalculateBounds', [function () {
+		return function (coordinates) {
+			var rect, lat, lon;
+
+			for (var k in coordinates) {
+				lon = coordinates[k][0];
+				lat = cooridnates[k][1];
+
+				if (rect == undefined) {
+					rect = { 'minLon': lon, 'maxLon': lon, 'minLat': lat, 'maxLat': lat };
+				} else {
+					if (lon > rect.maxLon) rect.maxLon = lon;
+					if (lon < rect.minLon) rect.minLon = lon;
+					if (lat > rect.maxLat) rect.maxLat = lat;
+					if (lat < rect.minLat) rect.minLat = lat;
+				}
+			}
+
+			return [
+				[ rect.minLat, rect.minLon ],
+				[ rect.maxLat, rect.maxLon ]
+			];
+		};
+	}]);
+
 
 	.value('version', 0.1);
