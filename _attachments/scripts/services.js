@@ -21,7 +21,7 @@ angular.module('triplogApp.services', ['ngResource'])
 
 			for (var k in coordinates) {
 				lon = coordinates[k][0];
-				lat = cooridnates[k][1];
+				lat = coordinates[k][1];
 
 				if (rect == undefined) {
 					rect = { 'minLon': lon, 'maxLon': lon, 'minLat': lat, 'maxLat': lat };

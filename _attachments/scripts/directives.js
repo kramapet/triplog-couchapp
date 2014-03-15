@@ -53,12 +53,21 @@ angular.module('triplogApp.directives', [])
 			'templateUrl': 'partials/dir-triplog-header.html'
 		};
 	}])
-	.directive('triplogMap', ['CalculateBounds', 'Leaflet', function () {
+	.directive('triplogMap', ['CalculateBounds', 'Leaflet', function (CalculateBounds, Leaflet) {
 		return {
 			'scope': {
 				'triplogMap': '='
 			},
 			'link': function (scope, elm, attrs) {
+				console.log(scope.triplogMap);
+				var id = 'map-' + scope.triplogMap.url;
+				var bounds = CalculateBounds(scope.triplogMap.geometry.coordinates);
+				elm.attr('id', id);
+				var map = Leaflet.map(id).fitBounds(bounds);
+				Leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+					'maxZoom': 18
+				}).addTo(map);
+				// Leaflet.geoJson(scope.triplogMap).addTo(map);
 			}
 		};
 	}]);

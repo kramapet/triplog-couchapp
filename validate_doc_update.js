@@ -48,7 +48,7 @@ function (newDoc, oldDoc, userCtx) {
 
 	switch (newDoc.class) {
 		case 'route':
-			require('geometry');
+			require('geo');
 			break;
 		case 'photo':
 			require('photoDescription');
