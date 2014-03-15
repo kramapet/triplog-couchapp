@@ -13,7 +13,7 @@ angular.module('triplogApp.services', ['ngResource'])
 
 	.factory('Leaflet', ['$window', function ($window) {
 		return $window.L;
-	})
+	}])
 
 
 	.value('version', 0.1);
