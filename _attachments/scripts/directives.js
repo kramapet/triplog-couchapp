@@ -52,4 +52,13 @@ angular.module('triplogApp.directives', [])
 			},
 			'templateUrl': 'partials/dir-triplog-header.html'
 		};
+	}])
+	.directive('triplogMap', ['Leaflet', function () {
+		return {
+			'link': function (scope, elm, attrs) {
+				console.log(scope);
+				console.log(elm);
+				console.log(attrs);
+			}
+		};
 	}]);
