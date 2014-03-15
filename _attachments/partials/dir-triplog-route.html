@@ -3,5 +3,7 @@
 
 	<div ng-bind-html="{'body': payload.value.body, 'id': payload.id} | showdown"></div>
 
+	<div class="map" triplog-map payload="payload.value"></div>
+
 	<triplog-footer payload="payload.value.published_at"></triplog-footer>
 </article>
