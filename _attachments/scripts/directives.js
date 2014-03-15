@@ -61,13 +61,13 @@ angular.module('triplogApp.directives', [])
 			'link': function (scope, elm, attrs) {
 				console.log(scope.triplogMap);
 				var id = 'map-' + scope.triplogMap.url;
-				var bounds = CalculateBounds(scope.triplogMap.geometry.coordinates);
+				var bounds = CalculateBounds(scope.triplogMap.geo.geometry.coordinates);
 				elm.attr('id', id);
 				var map = Leaflet.map(id).fitBounds(bounds);
 				Leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 					'maxZoom': 18
 				}).addTo(map);
-				// Leaflet.geoJson(scope.triplogMap).addTo(map);
+				Leaflet.geoJson(scope.triplogMap.geo).addTo(map);
 			}
 		};
 	}]);

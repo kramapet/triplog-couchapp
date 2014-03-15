@@ -9,7 +9,7 @@ function (doc) {
 
 	switch (doc.class) {
 		case 'route':
-			obj.geo = doc.geoy;
+			obj.geo = doc.geo;
 			break;
 		case 'photo':
 			obj.photoDescription = doc.photoDescription;
