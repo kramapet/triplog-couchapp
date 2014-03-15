@@ -16,5 +16,5 @@ function (doc) {
 			break;
 	}
 
-	emit(doc.published_at, obj);
+	emit(doc.url, obj);
 }

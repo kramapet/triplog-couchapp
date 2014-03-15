@@ -2,7 +2,7 @@
 
 /* controllers */
 angular.module('triplogApp.controllers', [])
-	.controller('MainController', ['$scope', 'Objects', function ($scope, Posts) {
+	.controller('MainController', ['$scope', 'Objects', function ($scope, Objects) {
 
 		$scope.objects = Objects.query5();
 

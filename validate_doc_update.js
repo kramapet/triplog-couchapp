@@ -46,8 +46,13 @@ function (newDoc, oldDoc, userCtx) {
 	require('body');
 	require('published_at');
 
-	if (newDoc.class == 'route') {
-		require('geometry');
+	switch (newDoc.class) {
+		case 'route':
+			require('geometry');
+			break;
+		case 'photo':
+			require('photoDescription');
+			break;
 	}
 
 	validate_class(newDoc.class);

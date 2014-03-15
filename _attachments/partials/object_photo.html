@@ -1,0 +1,9 @@
+<article>
+	<header>
+		<h1>{{ payload.value.title }}</h1>
+	</header>
+
+	<div ng-bind-html="{'body': payload.value.body, 'id': payload.id } | showdown"></div>
+
+	<div triplog-gallery="{'id': payload.id, 'photoDescription': payload.value.photoDescription}"></div>
+</article>
