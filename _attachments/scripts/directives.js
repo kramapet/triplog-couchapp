@@ -35,11 +35,21 @@ angular.module('triplogApp.directives', [])
 			'templateUrl': 'partials/dir-triplog-gallery.html'
 		};
 	}])
-	.directive('triplogDate', [function () {
+	.directive('triplogFooter', [function () {
 		return {
+			'restrict': 'E',
 			'scope': {
-				'payload': '=triplogDate'
+				'payload': '='
 			},
-			'templateUrl': 'partials/dir-triplog-date.html'
+			'templateUrl': 'partials/dir-triplog-footer.html'
+		};
+	}])
+	.directive('triplogHeader', [function () {
+		return {
+			'restrict': 'E',
+			'scope': {
+				'payload': '='
+			},
+			'templateUrl': 'partials/dir-triplog-header.html'
 		};
 	}]);

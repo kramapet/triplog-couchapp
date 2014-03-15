@@ -13,7 +13,8 @@ triplogApp.config(['$routeProvider', function ($routeProvider) {
 		'controller': 'MainController'
 	});
 
-	$routerProvider.when('/detail/:detailUrl', {
+	/* detail route */
+	$routeProvider.when('/detail/:detailUrl', {
 		'templateUrl': 'partials/home.html',
 		'controller': 'DetailController'
 	});

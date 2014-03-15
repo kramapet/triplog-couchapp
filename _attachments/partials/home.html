@@ -1,20 +1,4 @@
 <article ng-repeat="obj in objects.rows">
-<!--
-	<header>
-		<h1>{{ obj.value.title }}</h1>
-	</header>
-
-	<div ng-bind-html="{'body': obj.value.body, 'id': obj.id} | showdown"></div>
-
-
-	<footer>
-		<p class="small text-right">
-			<i>Published at: 
-				<time pubdate="pubdate">{{ obj.value.published_at | arrdate2epochtime | date:"yyyy/MM/dd HH:mm" }}</time>
-			</i>
-		</p>
-	</footer>
--->
 	<div ng-switch on="obj.value.class">
 		<div ng-switch-when="route" triplog-route="obj"></div>
 		<div ng-switch-when="photo" triplog-photo="obj"></div>

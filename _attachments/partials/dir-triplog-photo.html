@@ -1,8 +1,8 @@
 <article>
-	<header>
-		<h1><a href="#/detail/{{ payload.value.url }}">{{ payload.value.title }}</a></h1>
-	</header>
+	<triplog-header payload="{'url': payload.value.url, 'title': payload.value.title}"></triplog-header>
 
 	<div ng-bind-html="{'body': payload.value.body, 'id': payload.id } | showdown"></div>
 	<div triplog-gallery="{'id': payload.id, 'photoDescription': payload.value.photoDescription}"></div>
+
+	<triplog-footer payload="payload.value.published_at"></triplog-footer>
 </article>
