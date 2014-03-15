@@ -12,32 +12,10 @@ triplogApp.config(['$routeProvider', function ($routeProvider) {
 		'templateUrl': 'partials/home.html',
 		'controller': 'MainController'
 	});
-	/* posts routes */
-	$routeProvider.when('/posts', { 
-		'templateUrl': 'partials/post-list.html', 
-		'controller': 'PostListController' 
-	});
-	$routeProvider.when('/posts/:postId', { 
-		'templateUrl': 'partials/post-detail.html', 
-		'controller': 'PostDetailController' 
-	});
-	/* routes routes */
-	$routeProvider.when('/routes', { 
-		'templateUrl': 'partials/route-list.html', 
-		'controller': 'RouteListController' 
-	});
-	$routeProvider.when('/routes/:routeId', { 
-		'templateUrl': 'partials/route-detail', 
-		'controller': 'RouteDetailController' 
-	});
-	/* pictures routes */
-	$routeProvider.when('/photos', { 
-		'templateUrl': 'partials/photo-list.html', 
-		'controller': 'PhotoListController' 
-	});
-	$routeProvider.when('/photos/:photoId', { 
-		'templateUrl': 'partials/photo-detail.html', 
-		'controller': 'PhotoDetailController' 
+
+	$routerProvider.when('/detail/:detailUrl', {
+		'templateUrl': 'partials/home.html',
+		'controller': 'DetailController'
 	});
 
 	/* unknown page */

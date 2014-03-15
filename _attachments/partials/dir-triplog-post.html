@@ -1,0 +1,14 @@
+<article>
+	<header>
+		<h1><a ng-href="#/detail/{{ payload.value.url }}">{{ payload.value.title }}</a></h1>
+		<div triplog-date="payload.value.published_at"></div>
+	</header>
+
+	<div ng-bind-html="{'id': payload.id, 'body': payload.value.body} | showdown"></div>
+
+	<!--
+	<pre><code>
+		{{ payload | json }}
+	</code></pre>
+	-->
+</article>

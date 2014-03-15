@@ -8,7 +8,7 @@ angular.module('triplogApp.directives', [])
 			'scope': {
 				'payload': '=triplogPost'
 			},
-			'templateUrl': 'partials/object_post.html'
+			'templateUrl': 'partials/dir-triplog-post.html'
 		};
 	}])
 	.directive('triplogPhoto', [function () {
@@ -16,7 +16,7 @@ angular.module('triplogApp.directives', [])
 			'scope': {
 				'payload': '=triplogPhoto'
 			},
-			'templateUrl': 'partials/object_photo.html'
+			'templateUrl': 'partials/dir-triplog-photo.html'
 		};
 	}])
 	.directive('triplogRoute', [function () {
@@ -24,7 +24,7 @@ angular.module('triplogApp.directives', [])
 			'scope': {
 				'payload': '=triplogRoute'
 			},
-			'templateUrl': 'partials/object_route.html'
+			'templateUrl': 'partials/dir-triplog-route.html'
 		};
 	}])
 	.directive('triplogGallery', [function () {
@@ -32,6 +32,14 @@ angular.module('triplogApp.directives', [])
 			'scope': {
 				'payload': '=triplogGallery'
 			},
-			'templateUrl': 'partials/object_gallery.html'
+			'templateUrl': 'partials/dir-triplog-gallery.html'
+		};
+	}])
+	.directive('triplogDate', [function () {
+		return {
+			'scope': {
+				'payload': '=triplogDate'
+			},
+			'templateUrl': 'partials/dir-triplog-date.html'
 		};
 	}]);
