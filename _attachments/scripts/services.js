@@ -23,6 +23,17 @@ angular.module('triplogApp.services', ['ngResource'])
 		return $window.L;
 	}])
 
+	.factory('OpenStreetMap', ['Leaflet', function (Leaflet) {
+		return function (id) {
+			var map = Leaflet.map(id);
+			Leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				'maxZoom': 18
+			}).addTo(map);
+
+			return map;
+		};
+	}])
+
 	.factory('CalculateBounds', [function () {
 		return function (coordinates) {
 			var rect, lat, lon;
