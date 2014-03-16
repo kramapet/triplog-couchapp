@@ -11,6 +11,14 @@ angular.module('triplogApp.services', ['ngResource'])
 		});
 	}])
 
+	.factory('Routes', ['$resource', function ($resource) {
+		return $resource('/routes', {}, {
+			'query': { 
+				'method': 'GET'
+			}
+		});
+	}])
+
 	.factory('Leaflet', ['$window', function ($window) {
 		return $window.L;
 	}])
