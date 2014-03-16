@@ -1,4 +1,4 @@
 #banner a:hover { text-decoration: none !important }
 
 .my_img { padding: 10px }
-.map { width: 480px; height: 270px }
+.map { width: 100%; height: 400px }

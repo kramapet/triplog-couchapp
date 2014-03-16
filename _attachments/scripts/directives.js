@@ -59,7 +59,6 @@ angular.module('triplogApp.directives', [])
 				'triplogMap': '='
 			},
 			'link': function (scope, elm, attrs) {
-				console.log(scope.triplogMap);
 				var id = 'map-' + scope.triplogMap.url;
 				var bounds = CalculateBounds(scope.triplogMap.geo.geometry.coordinates);
 				elm.attr('id', id);
@@ -68,6 +67,31 @@ angular.module('triplogApp.directives', [])
 					'maxZoom': 18
 				}).addTo(map);
 				Leaflet.geoJson(scope.triplogMap.geo).addTo(map);
+			}
+		};
+	}])
+	.directive('triplogBigMap', ['CalculateBounds', 'Leaflet', 'OpenStreetMap', function (CalculateBounds, Leaflet, OpenStreetMap) {
+		return {
+			'controller': ['$scope', 'Routes', function ($scope, Routes) {
+				$scope.routes = Routes.query();
+			}],
+			'link': function (scope, elm, attrs) {
+				var id = 'big-map';
+				elm.attr('id', id);
+				var map = OpenStreetMap(id);
+				scope.$watch("routes.rows", function (v) {
+					if (typeof v == 'object') {
+						var allCoors = [];
+						for (var i in v) {
+							Leaflet.geoJson(v[i].value.geo).addTo(map);
+							for (var y in v[i].value.geo.geometry.coordinates) {
+								allCoors.push(v[i].value.geo.geometry.coordinates[y]);
+							}
+						}
+
+						map.fitBounds(CalculateBounds(allCoors));
+					}
+				});
 			}
 		};
 	}]);
