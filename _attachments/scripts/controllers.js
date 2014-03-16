@@ -7,4 +7,8 @@ angular.module('triplogApp.controllers', [])
 	}])
 
 	.controller('DetailController', [function () {
+	}])
+	
+	.controller('BigMapController', ['$scope', 'Routes', function ($scope, Routes) {
+		$scope.routes = Routes.query();
 	}]);
