@@ -8,6 +8,10 @@
 		"to": "_view/objects"
 	},
 	{
+		"from": "/routes",
+		"to": "_view/routes"
+	},
+	{
 		"from": "/object/:itemId",
 		"to": "../../:itemId"
 	},
