@@ -1,0 +1,11 @@
+<footer class="container-fluid panel-footer">
+<header id="archive">
+	<h1>Archive</h1>
+</header>
+
+<ul>
+	<li ng-repeat="arch in archive.rows">
+		<a ng-href="#/archive/{{ arch.key[0] }}/{{ arch.key[1] }}">{{ arch.key[0] }}/{{ arch.key[1] }}</a>
+	</li>
+</ul>
+</footer>

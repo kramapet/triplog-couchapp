@@ -8,6 +8,13 @@
 		"to": "_view/objects"
 	},
 	{
+		"from": "/objects_by_url/:url",
+		"to": "_view/objects_by_url",
+		"query": {
+			"key": ":url"
+		}
+	},
+	{
 		"from": "/routes",
 		"to": "_view/routes"
 	},

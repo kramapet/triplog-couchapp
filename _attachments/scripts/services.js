@@ -6,9 +6,33 @@ angular.module('triplogApp.services', ['ngResource'])
 
 	.factory('Objects', ['$resource', function ($resource) {
 		return $resource('/objects', {}, {
-			'query5': { 'method': 'GET', 'params': { 'limit': 5, 'descending': true } },
-			'query': { 'method': 'GET' }
+			'query': {
+				'method': 'GET',
+				'params': {
+					'descending': true,
+					'reduce': false
+				}
+			},
+			'queryPages': {
+				'method': 'GET',
+				'params': {
+					'group_level': 2,
+					'descending': true
+				}
+			},
+			'queryLastPage': {
+				'method': 'GET',
+				'params': {
+					'group_level': 2,
+					'descending': true,
+					'limit': 1
+				}
+			}
 		});
+	}])
+
+	.factory('ObjectsByUrl', ['$resource', function ($resource) {
+		return $resource('/objects_by_url/:url', {}, {});
 	}])
 
 	.factory('Routes', ['$resource', function ($resource) {

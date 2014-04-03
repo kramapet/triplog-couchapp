@@ -94,4 +94,13 @@ angular.module('triplogApp.directives', [])
 				});
 			}
 		};
+	}])
+	.directive('triplogArchive', [function () {
+		return {
+			'controller': ['$scope', 'Objects', function ($scope, Objects) {
+				$scope.archive = Objects.queryPages();	
+			}],
+			'restrict': 'EA',
+			'templateUrl': 'partials/dir-triplog-archive.html'
+		};
 	}]);

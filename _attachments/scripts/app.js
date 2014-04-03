@@ -13,6 +13,11 @@ triplogApp.config(['$routeProvider', function ($routeProvider) {
 		'controller': 'MainController'
 	});
 
+	$routeProvider.when('/archive/:year/:month', {
+		'templateUrl': 'partials/home.html',
+		'controller': 'MainController'
+	});
+
 	/* detail route */
 	$routeProvider.when('/detail/:detailUrl', {
 		'templateUrl': 'partials/home.html',
