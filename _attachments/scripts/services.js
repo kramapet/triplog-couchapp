@@ -101,6 +101,6 @@ angular.module('triplogApp.services', ['ngResource'])
 				'endkey': '[' + endkey + ']'
 			};
 		};
-	})
+	}])
 
 	.value('version', 0.1);
