@@ -83,5 +83,24 @@ angular.module('triplogApp.services', ['ngResource'])
 		};
 	}])
 
+	.factory('GetKeysForMonth', [function () {
+		return function (year, month) {
+			var endkey = [year, month, 0, 0, 0, 0];
+
+			if (month == 11) {
+				++year;
+				month = 0;
+			} else {
+				++month;
+			}
+
+			var startkey = [year, month, 0, 0, 0, 0];
+
+			return {
+				'startkey': '[' + startkey + ']',
+				'endkey': '[' + endkey + ']'
+			};
+		};
+	})
 
 	.value('version', 0.1);
