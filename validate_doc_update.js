@@ -1,4 +1,22 @@
-function (newDoc, oldDoc, userCtx) {
+function (newDoc, oldDoc, userCtx, secCtx) {
+	
+	var is_admin = function (user, security) {
+		security.admins = security.admins || {};
+		security.admins.roles = security.admins.roles || [];
+		security.admins.names = security.admins.names || [];
+
+		if (security.admins.names.indexOf(user.name) > -1) {
+			return true;
+		}
+
+		for (var x in user.roles) {
+			if (security.admins.roles.indexOf(user.roles[x]) > -1) {
+				return true;
+			}
+		}
+
+		throw({'forbidden': 'Document cannot be changed (user do not have admin role)'});
+	};
 	/*
 	var unchanged = function (field) {
 		if (oldDoc && toJSON(oldDoc[field]) != toJSON(newDoc[field])) {
@@ -39,6 +57,8 @@ function (newDoc, oldDoc, userCtx) {
 			throw ({ 'forbidden': message });
 		}
 	};
+
+	is_admin(userCtx, secCtx);
 
 	require('class');
 	require('title');
