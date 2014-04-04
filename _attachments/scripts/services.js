@@ -5,7 +5,7 @@
 angular.module('triplogApp.services', ['ngResource'])
 
 	.factory('Objects', ['$resource', function ($resource) {
-		return $resource('/objects', {}, {
+		return $resource('objects', {}, {
 			'query': {
 				'method': 'GET',
 				'params': {
@@ -32,11 +32,11 @@ angular.module('triplogApp.services', ['ngResource'])
 	}])
 
 	.factory('ObjectsByUrl', ['$resource', function ($resource) {
-		return $resource('/objects_by_url/:url', {}, {});
+		return $resource('objects_by_url/:url', {}, {});
 	}])
 
 	.factory('Routes', ['$resource', function ($resource) {
-		return $resource('/routes', {}, {
+		return $resource('routes', {}, {
 			'query': { 
 				'method': 'GET'
 			}
