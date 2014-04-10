@@ -1,3 +1,4 @@
+<p ng-show="!objects.rows.length">No records found</p>
 <article ng-repeat="obj in objects.rows">
 	<div ng-switch on="obj.value.class">
 		<div ng-switch-when="route" triplog-route="obj"></div>
