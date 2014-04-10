@@ -58,6 +58,16 @@ angular.module('triplogApp.services', ['ngResource'])
 		};
 	}])
 
+	.factory('EmptyQuery', [function () {
+		return function () { 
+			return {
+				"total_rows": 0,
+				"offset": 0,
+				"rows": []
+			};
+		};
+	}])
+
 	.factory('CalculateBounds', [function () {
 		return function (coordinates) {
 			var rect, lat, lon;
