@@ -46,7 +46,7 @@
 	
 	<ul ng-show='detail._attachments' class='list-unstyled'>
 		<li ng-repeat='(name, props) in detail._attachments'>
-			<button class='btn btn-xs'>
+			<button class='btn btn-xs' type='button' ng-click='detach(name);'>
 				<span class='glyphicon glyphicon-remove'></span> remove
 			</button>
 			{{ name }}
