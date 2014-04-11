@@ -12,17 +12,13 @@
 	
 	<triplog-main-header></triplog-main-header>
 
-
-	<main class="container-fluid">
-		<div class="row">
-			<div class="col-xs-9 col-sm-6" ng-view></div>
-			<div class="col-xs-9 col-sm-6">
-				<div class="map" triplog-big-map="routes.rows"></div>
-			</div>
-		</div>
-	</main>
+	<main class="main" ng-view></main>
 
 	<triplog-archive></triplog-archive>
+
+	<hr>
+
+	<div triplog-big-map="routes.rows"></div>
 
 	<script src="vendor/showdown/showdown.js"></script>
 	<script src="vendor/showdown/extensions/table.js"></script>
