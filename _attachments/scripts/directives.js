@@ -95,6 +95,17 @@ angular.module('triplogApp.directives', [])
 			}
 		};
 	}])
+
+	.directive('triplogMainHeader', [function () {
+		return {
+			'controller': ['$scope', 'Config', function ($scope, Config) {
+				$scope.config = Config.query();
+			}],
+			'restrict': 'EA',
+			'templateUrl': 'partials/dir-triplog-main-header.html'
+		};
+	}])
+
 	.directive('triplogArchive', [function () {
 		return {
 			'controller': ['$scope', 'Objects', function ($scope, Objects) {
