@@ -87,5 +87,9 @@ angular.module('triplogApp.controllers', [])
 					$scope.errordata = null;
 				});
 			};
+
+			$scope.detach = function (name) {
+				$scope.detail.detach(name);
+			};
 		});
 	}]);
