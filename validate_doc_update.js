@@ -1,6 +1,7 @@
 function (newDoc, oldDoc, userCtx, secCtx) {
 	
 	var is_admin = function (user, security) {
+		return true;
 		security.admins = security.admins || {};
 		security.admins.roles = security.admins.roles || [];
 		security.admins.names = security.admins.names || [];
@@ -51,22 +52,27 @@ function (newDoc, oldDoc, userCtx, secCtx) {
 		}
 	};
 
-	var require = function (field, message) {
+	var require = function (doc, field, message) {
 		message = message || 'Document must have a ' + field;
-		if (!newDoc[field]) {
+		if (!doc[field]) {
 			throw ({ 'forbidden': message });
 		}
 	};
 
 	is_admin(userCtx, secCtx);
 
-	require('class');
-	require('title');
-	require('url');
-	require('body');
-	require('published_at');
+	doc = newDoc;
+	if (doc['_deleted'] && doc['_deleted'] == true) {
+		doc = oldDoc;
+	}
 
-	switch (newDoc.class) {
+	require(doc, 'class');
+	require(doc, 'title');
+	require(doc, 'url');
+	require(doc, 'body');
+	require(doc, 'published_at');
+
+	switch (doc.class) {
 		case 'route':
 			require('geo');
 			break;
@@ -75,6 +81,6 @@ function (newDoc, oldDoc, userCtx, secCtx) {
 			break;
 	}
 
-	validate_class(newDoc.class);
-	validate_date(newDoc.published_at);
+	validate_class(doc.class);
+	validate_date(doc.published_at);
 }
