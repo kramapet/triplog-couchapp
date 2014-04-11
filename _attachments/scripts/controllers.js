@@ -33,6 +33,11 @@ angular.module('triplogApp.controllers', [])
 	}])
 	
 	.controller('AdminController', ['$scope', '$routeParams', '$location', 'CouchDB', function ($scope, $routeParams, $location, CouchDB) {
+		var setError = function (payload) {
+			$scope.okdata = null;
+			$scope.errordata = "Oh, snap! " + payload.reason;
+		};
+		
 		$scope.detail = CouchDB.db.newDoc();
 		if (!$routeParams.id) {
 			$scope.action = 'add';
@@ -61,9 +66,22 @@ angular.module('triplogApp.controllers', [])
 			$scope.detail.save().success(function () {
 				$scope.errordata = null;
 				$scope.okdata = 'Document has been saved';
-			}).error(function (payload) {
-				$scope.okdata = null;
-				$scope.errordata = "Oh, snap! " + payload.reason;
+			}).error(setError);
+		};
+
+		$scope.destroy = function () {
+			$scope.detail.remove().success(function () {
+				$scope.errordata = null;
+				$scope.okdata = "Document has been removed";
+				$scope.detail = CouchDB.db.newDoc();
+			}).error(setError);
+		};
+
+		$scope.attach = function (id) {
+			var fileInput = document.getElementById(id);
+			$scope.detail.attachMulti(fileInput.files, function () {
+				fileInput.value = "";
 			});
 		};
+
 	}]);

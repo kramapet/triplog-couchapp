@@ -74,10 +74,10 @@ function (newDoc, oldDoc, userCtx, secCtx) {
 
 	switch (doc.class) {
 		case 'route':
-			require('geo');
+			require(doc, 'geo');
 			break;
 		case 'photo':
-			require('photoDescription');
+			require(doc, 'photoDescription');
 			break;
 	}
 
