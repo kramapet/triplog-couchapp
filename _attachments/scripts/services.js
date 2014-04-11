@@ -67,13 +67,16 @@ angular.module('triplogApp.services', ['ngResource', 'CornerCouch'])
 		};
 	}])
 
-	.factory('CouchDB', ['cornercouch', function (cornercouch) {
-		var couch = cornercouch('http://couch01:5984', 'GET');
-		var db = couch.getDB('triplog_test');
-		return {
-			'server': couch,
-			'db': db
-		}
+	.factory('CouchDB', ['cornercouch', 'Config', '$q', function (cornercouch, Config, $q) {
+		var deferred = $q.defer();
+		var cfg = Config.query(function () {
+			var couch = cornercouch(cfg.connection.url, 'GET');
+			var db = couch.getDB(cfg.connection.db);
+
+			deferred.resolve({ 'server': couch, 'db': db });
+		});
+
+		return deferred.promise;
 	}])
 
 	.factory('EmptyQuery', [function () {
