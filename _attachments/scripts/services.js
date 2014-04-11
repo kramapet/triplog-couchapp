@@ -2,7 +2,7 @@
 
 /* services */
 
-angular.module('triplogApp.services', ['ngResource'])
+angular.module('triplogApp.services', ['ngResource', 'CornerCouch'])
 
 	.factory('Objects', ['$resource', function ($resource) {
 		return $resource('objects', {}, {
@@ -43,6 +43,15 @@ angular.module('triplogApp.services', ['ngResource'])
 		});
 	}])
 
+	.factory('Config', ['$resource', function ($resource) {
+		return $resource('config/config.json', {}, {
+			'query': {
+				'method': 'GET',
+				'cache': true
+			}
+		});
+	}])
+
 	.factory('Leaflet', ['$window', function ($window) {
 		return $window.L;
 	}])
@@ -56,6 +65,15 @@ angular.module('triplogApp.services', ['ngResource'])
 
 			return map;
 		};
+	}])
+
+	.factory('CouchDB', ['cornercouch', function (cornercouch) {
+		var couch = cornercouch('http://couch01:5984', 'GET');
+		var db = couch.getDB('triplog_test');
+		return {
+			'server': couch,
+			'db': db
+		}
 	}])
 
 	.factory('EmptyQuery', [function () {
