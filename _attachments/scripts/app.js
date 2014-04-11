@@ -3,7 +3,8 @@ var triplogApp = angular.module('triplogApp', [
 	'triplogApp.controllers', 
 	'triplogApp.services', 
 	'triplogApp.directives', 
-	'triplogApp.filters' 
+	'triplogApp.filters',
+	'CornerCouch'
 ]);
 
 triplogApp.config(['$routeProvider', function ($routeProvider) {
@@ -13,6 +14,7 @@ triplogApp.config(['$routeProvider', function ($routeProvider) {
 		'controller': 'MainController'
 	});
 
+	/* archive route */
 	$routeProvider.when('/archive/:year/:month', {
 		'templateUrl': 'partials/home.html',
 		'controller': 'MainController'
@@ -24,6 +26,18 @@ triplogApp.config(['$routeProvider', function ($routeProvider) {
 		'controller': 'DetailController'
 	});
 
+	/* admin route */
+	$routeProvider.when('/admin/:id?', {
+		'controller': 'AdminController',
+		'templateUrl': 'partials/admin/home.html'
+	});
+
+	/* error 404 route */
+	$routeProvider.when('/error404', {
+		'controller': 'Error404Controller',
+		'templateUrl': 'partials/error404.html'
+	});
+
 	/* unknown page */
-	$routeProvider.otherwise({ 'redirectTo': '/home' });
+	$routeProvider.otherwise({ 'redirectTo': '/error404' });
 }]);
