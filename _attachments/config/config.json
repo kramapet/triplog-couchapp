@@ -2,5 +2,9 @@
 	"header": {
 		"title": "FooTitle",
 		"description": "FooDescription"
+	},
+	"connection": {
+		"url": "http://localhost:5984",
+		"db": "triplog-dev"
 	}
 }
