@@ -78,6 +78,10 @@ angular.module('triplogApp.directives', [])
 			'link': function (scope, elm, attrs) {
 				scope.$watch("routes.rows", function (v) {
 					if (typeof v == 'object' && v.length > 0) {
+						var id = 'big-map';
+						elm.attr('id', id);
+						elm.attr('class', 'map container');
+						var map = OpenStreetMap(id);
 						var allCoors = [];
 						for (var i in v) {
 							Leaflet.geoJson(v[i].value.geo).addTo(map);
@@ -86,9 +90,6 @@ angular.module('triplogApp.directives', [])
 							}
 						}
 
-						var id = 'big-map';
-						elm.attr('id', id);
-						map = OpenStreetMap(id);
 						map.fitBounds(CalculateBounds(allCoors));
 					}
 				});
