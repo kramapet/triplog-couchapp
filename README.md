@@ -1,9 +1,8 @@
-TripLog Frontend
+TripLog Couchapp
 ================
 
-TripLog Frontend as CouchApp
-
 $ git clone https://github.com/kramapet/triplog-couchapp
+
 $ cd ./triplog-couchapp
 
 edit .couchapprc and set your environment to your couchdb server
