@@ -2,7 +2,7 @@
 
 /* controllers */
 angular.module('triplogApp.controllers', [])
-	.controller('MainController', ['$scope', '$routeParams', 'Objects', 'GetKeysForMonth', 'EmptyQuery', 'CouchDB', 'Config', function ($scope, $routeParams, Objects, GetKeysForMonth, EmptyQuery, CouchDB, Config) {
+	.controller('MainController', ['$scope', '$routeParams', 'Objects', 'GetKeysForMonth', 'EmptyQuery', 'Config', function ($scope, $routeParams, Objects, GetKeysForMonth, EmptyQuery, Config) {
 		if ($routeParams.year == undefined) {
 			var last_page = Objects.queryLastPage({}, function () {
 				if (last_page.rows.length == 0) {
@@ -83,6 +83,8 @@ angular.module('triplogApp.controllers', [])
 				var fileInput = document.getElementById(id);
 				$scope.detail.attachMulti(fileInput.files, function () {
 					fileInput.value = "";
+					$scope.okdata = 'Files have been uploaded.'
+					$scope.errordata = null;
 				});
 			};
 		});
