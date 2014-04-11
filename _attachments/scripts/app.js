@@ -14,6 +14,7 @@ triplogApp.config(['$routeProvider', function ($routeProvider) {
 		'controller': 'MainController'
 	});
 
+
 	/* archive route */
 	$routeProvider.when('/archive/:year/:month', {
 		'templateUrl': 'partials/home.html',
@@ -37,6 +38,9 @@ triplogApp.config(['$routeProvider', function ($routeProvider) {
 		'controller': 'Error404Controller',
 		'templateUrl': 'partials/error404.html'
 	});
+
+	/* default route */
+	$routeProvider.when('/', { 'redirectTo': '/home' });
 
 	/* unknown page */
 	$routeProvider.otherwise({ 'redirectTo': '/error404' });
