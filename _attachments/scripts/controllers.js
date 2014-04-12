@@ -37,6 +37,20 @@ angular.module('triplogApp.controllers', [])
 			$scope.okdata = null;
 			$scope.errordata = "Oh, snap! " + payload.reason;
 		};
+
+		var refreshPhotoDescription = function (detail) {
+			for (var filename in detail._attachments) {
+				var file = detail._attachments[filename];
+				if (file.content_type.match(/^image/)) {
+					detail.photoDescription = detail.photoDescription || {};
+					if (!detail.photoDescription[filename]) {
+						detail.photoDescription[filename] = "";
+					}
+				}
+			}
+		};
+
+
 		
 		CouchDB.then(function (couch) {
 			$scope.detail = couch.db.newDoc();
@@ -47,10 +61,8 @@ angular.module('triplogApp.controllers', [])
 			} else {
 				$scope.action = 'edit';
 				$scope.detail.load($routeParams.id).success(function () {
-					console.log(arguments);
-				}).error(function () {
-					console.log(arguments);
-				});
+					refreshPhotoDescription($scope.detail);
+				}).error(setError);
 			}
 
 			$scope.update = function () {
@@ -85,11 +97,15 @@ angular.module('triplogApp.controllers', [])
 					fileInput.value = "";
 					$scope.okdata = 'Files have been uploaded.'
 					$scope.errordata = null;
+					refreshPhotoDescription($scope.detail);
 				});
 			};
 
 			$scope.detach = function (name) {
 				$scope.detail.detach(name);
+				if ($scope.detail.photoDescription[name]) {
+					delete $scope.detail.photoDescription[name];
+				}
 			};
 		});
 	}]);
