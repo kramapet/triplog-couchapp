@@ -107,6 +107,15 @@ angular.module('triplogApp.directives', [])
 		};
 	}])
 
+	.directive('triplogPhotoDescription', [function () {
+		return {
+			'scope': {
+				'payload': '=triplogPhotoDescription'
+			},
+			'templateUrl': 'partials/admin/triplogPhotoDescription.html'
+		};
+	}])
+
 	.directive('triplogArchive', [function () {
 		return {
 			'controller': ['$scope', 'Objects', function ($scope, Objects) {
