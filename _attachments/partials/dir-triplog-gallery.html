@@ -1,8 +1,6 @@
 <div ng-repeat="(photo_id, photo_description) in payload.photoDescription">
 	<p class="my_img text-center">
-		<a ng-href="object/{{ payload.id }}/{{ photo_id }}">
-			<img class="img-thumbnail img-responsive" ng-src="object/{{ payload.id }}/min.{{ photo_id }}">
-		</a>
+			<img class="img-thumbnail img-responsive" ng-src="object/{{ payload.id }}/{{ photo_id }}">
 		<br>
 		{{ photo_description }}
 	</p>
