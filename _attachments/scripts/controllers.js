@@ -32,7 +32,8 @@ angular.module('triplogApp.controllers', [])
 		$scope.routes = Routes.query();
 	}])
 	
-	.controller('AdminController', ['$scope', '$routeParams', '$location', 'CouchDB', function ($scope, $routeParams, $location, CouchDB) {
+	.controller('AdminController', ['$scope', '$routeParams', '$location', 'CouchDB', '$window', 
+	function ($scope, $routeParams, $location, CouchDB, $window) {
 		var setError = function (payload) {
 			$scope.okdata = null;
 			$scope.errordata = "Oh, snap! " + payload.reason;
@@ -49,7 +50,6 @@ angular.module('triplogApp.controllers', [])
 				}
 			}
 		};
-
 
 		
 		CouchDB.then(function (couch) {
@@ -91,8 +91,8 @@ angular.module('triplogApp.controllers', [])
 				}).error(setError);
 			};
 
-			$scope.attach = function (id) {
-				var fileInput = document.getElementById(id);
+			$scope.attach = function (idx) {
+				var fileInput = document.getElementById(idx);
 				$scope.detail.attachMulti(fileInput.files, function () {
 					fileInput.value = "";
 					$scope.okdata = 'Files have been uploaded.'
@@ -107,5 +107,43 @@ angular.module('triplogApp.controllers', [])
 					delete $scope.detail.photoDescription[name];
 				}
 			};
+
+			$scope.processGPX = function (idx) {
+				var fileInput = document.getElementById(idx);
+				var file = fileInput.files[0];
+				if (!file.type.match(/gpx\+xml/)) {
+					setError({'reason': 'Invalid format'});
+					return;
+				}
+			
+				var parser = new $window.DOMParser();
+				var reader = new FileReader();
+				reader.onload = (function (f) {
+					return function (event) {
+						var doc = parser.parseFromString(event.target.result, 'application/xml');
+						var points = doc.getElementsByTagName('trkpt');
+						if (points.length > 0) {
+							$scope.detail.geo = {
+								'type': 'Feature',
+								'geometry': {
+									'type': 'LineString',
+									'coordinates': []
+								}
+							};
+						}
+
+						for (var i in points) {
+							if (points[i].attributes && points[i].attributes['lon'] && points[i].attributes['lat']) {
+								$scope.detail.geo.geometry.coordinates.push( [ points[i].attributes['lon'].nodeValue, points[i].attributes['lat'].nodeValue ]);
+							}
+						}
+
+						$scope.update();
+					};
+				})(file);
+
+				reader.readAsText(file);
+			};
+
 		});
 	}]);
