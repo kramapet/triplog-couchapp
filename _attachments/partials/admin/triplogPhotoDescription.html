@@ -1,0 +1,7 @@
+<fieldset>
+	<legend>Photo descriptions</legend>
+	<div ng-repeat='(key, value) in payload.photoDescription' class='form-group'>
+		<label>{{ key }}</label>
+		<textarea ng-model='payload.photoDescription[key]' class='form-control' rows='2'></textarea>
+	</div>
+</fieldset>
