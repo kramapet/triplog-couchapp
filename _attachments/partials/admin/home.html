@@ -40,6 +40,7 @@
 		<div ng-switch-when='route'>
 			<fieldset>
 				<legend>Upload and process GPX</legend>
+				<div ng-if='detail.geo' triplog-map='detail' class='map'></div>
 				<label for='route_upload'>GPX file:</label>
 				<input id='route_upload' type='file'>
 				<br>
