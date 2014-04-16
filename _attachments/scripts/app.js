@@ -39,6 +39,12 @@ triplogApp.config(['$routeProvider', function ($routeProvider) {
 		'templateUrl': 'partials/error404.html'
 	});
 
+	/* login route */
+	$routeProvider.when('/login', {
+		'controller': 'LoginController',
+		'templateUrl': 'partials/login.html'
+	});
+
 	/* default route */
 	$routeProvider.when('/', { 'redirectTo': '/home' });
 
