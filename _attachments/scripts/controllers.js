@@ -31,6 +31,28 @@ angular.module('triplogApp.controllers', [])
 	.controller('BigMapController', ['$scope', 'Routes', function ($scope, Routes) {
 		$scope.routes = Routes.query();
 	}])
+
+	.controller('LoginController', ['$scope', '$location', 'CouchDB', function ($scope, $location, CouchDB) {
+		$scope.credentials = {
+			'username': '',
+			'password': ''
+		};
+		$scope.message = null;
+
+		var setMessage = function (data) {
+			$scope.message = data.reason;
+		};
+
+		$scope.login = function () {
+			CouchDB.then(function (couch) {
+				couch.server.login($scope.credentials.username, $scope.credentials.password).success(function () {
+					$scope.message = 'User has been authenticated';
+					$scope.credentials.username = $scope.credentials.password = '';
+					$location.path('/home');
+				}).error(setMessage);
+			});
+		};
+	}])
 	
 	.controller('AdminController', ['$scope', '$routeParams', '$location', 'CouchDB', '$window', 
 	function ($scope, $routeParams, $location, CouchDB, $window) {
@@ -134,7 +156,10 @@ angular.module('triplogApp.controllers', [])
 
 						for (var i in points) {
 							if (points[i].attributes && points[i].attributes['lon'] && points[i].attributes['lat']) {
-								$scope.detail.geo.geometry.coordinates.push( [ points[i].attributes['lon'].nodeValue, points[i].attributes['lat'].nodeValue ]);
+								$scope.detail.geo.geometry.coordinates.push([ 
+									points[i].attributes['lon'].nodeValue, 
+									points[i].attributes['lat'].nodeValue 
+								]);
 							}
 						}
 
