@@ -1,7 +1,6 @@
 function (newDoc, oldDoc, userCtx, secCtx) {
 	
 	var is_admin = function (user, security) {
-		return true;
 		security.admins = security.admins || {};
 		security.admins.roles = security.admins.roles || [];
 		security.admins.names = security.admins.names || [];
@@ -18,6 +17,7 @@ function (newDoc, oldDoc, userCtx, secCtx) {
 
 		throw({'forbidden': 'Document cannot be changed (user do not have admin role)'});
 	};
+
 	/*
 	var unchanged = function (field) {
 		if (oldDoc && toJSON(oldDoc[field]) != toJSON(newDoc[field])) {
