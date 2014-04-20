@@ -79,6 +79,23 @@ angular.module('triplogApp.services', ['ngResource', 'CornerCouch'])
 		return deferred.promise;
 	}])
 
+	.factory('HasRole', ['CouchDB', '$q', function (CouchDB, $q) {
+		return function (role) {
+			var deferred = $q.defer();
+			CouchDB.then(function (couch) {
+				couch.server.session().success(function (data) {
+					if (data.userCtx.roles.indexOf(role) < 0) {
+						deferred.reject(data.userCtx);
+					} else {
+						deferred.resolve(data.userCtx);
+					}
+				});
+			});
+
+			return deferred.promise;
+		};
+	}])
+
 	.factory('EmptyQuery', [function () {
 		return function () { 
 			return {
