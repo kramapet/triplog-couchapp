@@ -1,6 +1,6 @@
 <main class="main">
-	<p ng-show="!objects.rows.length">No records found</p>
 	<article ng-repeat="obj in objects.rows">
+		<a ng-show="admin" ng-href="#/admin/{{obj.value.url}}">edit</a>
 		<div ng-switch on="obj.value.class">
 			<div ng-switch-when="route" triplog-route="obj"></div>
 			<div ng-switch-when="photo" triplog-photo="obj"></div>
