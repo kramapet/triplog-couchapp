@@ -3,6 +3,7 @@
 /* controllers */
 angular.module('triplogApp.controllers', [])
 	.controller('MainController', ['$scope', '$routeParams', 'Objects', 'GetKeysForMonth', 'EmptyQuery', 'Config', 'HasRole', '$location', function ($scope, $routeParams, Objects, GetKeysForMonth, EmptyQuery, Config, HasRole, $location) {
+		$scope.admin = false;
 		var success_cb = function () {
 			if ($routeParams.year == undefined) {
 				var last_page = Objects.queryLastPage({}, function () {
@@ -25,6 +26,9 @@ angular.module('triplogApp.controllers', [])
 		};
 	
 		HasRole('triplog-reader').then(success_cb, error_cb);
+		HasRole('triplog-writer').then(function () {
+			$scope.admin = true;
+		});
 	}])
 
 	.controller('DetailController', ['$scope', '$routeParams', 'ObjectsByUrl', 'HasRole', '$location', function ($scope, $routeParams, ObjectsByUrl, HasRole, $location) {
